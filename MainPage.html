@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-grid/4.6.3/ui-grid.min.js"></script>
+    <script src="MainPage.js"></script>
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css">
+    <meta charset="utf-8" />
+	
+</head>
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-messages.min.js"></script>
+
+    <!-- Angular Material Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>
+
+    <h1 class="header">Parking Slot Allocation Application</h1>
+    <div ng-app="parkingSlotApp" class="app">
+        <div ng-controller="parkingSlotController">
+
+
+            <span class="icons">
+                <i class="fa fa-plus-circle fa-2x" ng-click="addCarDetail()"></i>
+            </span>
+            <table style="border:none; margin-top:20px">
+                <tr>
+                    <td><span class="text">Enter No of parking Slots :</span></td>
+                    <td><input class="text" type="text" ng-model="NoOfSlots" /><br /><br /></td>
+                </tr>
+                <tr>
+                    <td><span class="text">Enter No of cars parked   :</span> </td>
+                    <td><input type="text" class="text" ng-model="NoOfCars" /></td>
+                </tr>
+                
+            </table>
+
+            <br />
+            <button ng-click="GenerateCarRegistrationNumber(NoOfSlots,NoOfCars)" style="background-color:white;">Generate Reg Number</button>
+            <br/>
+            <br />
+           
+         
+            <table st-table="cars" st-safe-src="cars" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Car Number</th>
+                        <th>Color</th>
+                        <th>Slot No</th>
+                    </tr>
+                  
+                    <tr>
+                        <th><input st-search="cars.carNumber" placeholder="search for car Number" class="input-sm form-control" type="search" /></th>
+                        <th><input st-search="cars.color" placeholder="search for car Color" class="input-sm form-control" type="search" /></th>
+                     
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in cars">
+                        <td>{{row.carNumber}}</td>
+                        <td>{{row.color}}</td>
+                        <td>{{row.slotNumber}}</td>
+
+                        <td>
+                            <i class="fa fa-trash-o fa-lg" ng-click="removeItem(row)"></i> 
+                        </td>
+                       
+
+                    </tr>
+                </tbody>
+            </table>
+    </div>
+        </div>
+</body>
+</html>
